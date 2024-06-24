@@ -51,15 +51,6 @@ bpdm-gate:
         auth-server-url: https://centralidp.dev.demo.catena-x.net/auth
         realm: CX-Central
         client-id: Cl16-CX-BPDMGate
-        permissions:
-          readInputPartner: view_company_data
-          writeInputPartner: update_company_data
-          readOutputPartner: view_shared_data
-          readInputChangelog: view_company_data
-          readOutputChangelog: view_shared_data
-          readSharingState: view_company_data
-          writeSharingState: update_company_data
-          read_stats: view_company_data
     springdoc:
       swagger-ui:
         oauth:
@@ -132,14 +123,6 @@ bpdm-pool:
         auth-server-url: https://centralidp.dev.demo.catena-x.net/auth
         realm: CX-Central
         client-id: Cl7-CX-BPDM
-        permissions:
-          readPartner: view_company_data
-          writePartner: add_company_data
-          readMemberPartner: view_company_data
-          readMetaData: view_company_data
-          writeMetaData: add_company_data
-          readChangelog: view_company_data
-          readMemberChangelog: view_company_data
     springdoc:
       swagger-ui:
         oauth:
@@ -203,16 +186,16 @@ bpdm-orchestrator:
         realm: CX-Central
         client-id: Cl7-CX-BPDM
         permissions:
-          createTask: add_company_data
-          readTask: add_company_data
+          createTask: write_partner
+          readTask: write_partner
           reservation:
-            clean: add_company_data
-            cleanAndSync: add_company_data
-            poolSync: add_company_data
+            clean: write_partner
+            cleanAndSync: write_partner
+            poolSync: write_partner
           result:
-            clean: add_company_data
-            cleanAndSync: add_company_data
-            poolSync: add_company_data
+            clean: write_partner
+            cleanAndSync: write_partner
+            poolSync: write_partner
 
 bpdm-cleaning-service-dummy:
   image:
