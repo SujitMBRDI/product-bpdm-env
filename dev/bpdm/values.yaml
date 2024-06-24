@@ -1,6 +1,5 @@
 bpdm-gate:
   image:
-    tag: "main"
     pullPolicy: Always
   fullnameOverride: bpdm-dev-gate-test-company
   enabled: true
@@ -84,7 +83,6 @@ bpdm-gate:
 
 bpdm-pool:
   image:
-    tag: "main"
     pullPolicy: Always
   fullnameOverride: bpdm-dev-pool
   enabled: true
@@ -161,7 +159,6 @@ bpdm-pool:
 
 bpdm-orchestrator:
   image:
-    tag: "main"
     pullPolicy: Always
   fullnameOverride: bpdm-dev-orchestrator
   enabled: true
@@ -219,7 +216,6 @@ bpdm-orchestrator:
 
 bpdm-cleaning-service-dummy:
   image:
-    tag: "main"
     pullPolicy: Always
   fullnameOverride: bpdm-dev-cleaning-service
   enabled: true
