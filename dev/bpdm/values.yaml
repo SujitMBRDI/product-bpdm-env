@@ -73,6 +73,9 @@ bpdm-gate:
       swagger-ui:
         oauth:
           client-id: Cl2-CX-Portal
+    spring:
+      codec:
+        max-in-memory-size: 512KB
   applicationSecrets:
     spring:
       datasource:
