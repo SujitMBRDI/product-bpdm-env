@@ -41,11 +41,11 @@ bpdm-gate:
       tasks:
         creation:
           fromSharingMember:
-            cron: '*/30 * * * * *'
             batchSize: 20
           fromPool:
             batchSize: 20
-            cron: '*/30 * * * * *'
+        check:
+          batchSize: 20
       client:
         orchestrator:
           base-url: "http://bpdm-dev-orchestrator/orchestrator"
@@ -60,22 +60,11 @@ bpdm-gate:
         realm: CX-Central
         client-id: Cl16-CX-BPDMGate
         permissions:
-          readInputPartner: write_partner
-          writeInputPartner: write_partner
-          readOutputPartner: write_partner
-          readInputChangelog: write_partner
-          readOutputChangelog: write_partner
-          readSharingState: write_partner
-          writeSharingState: write_partner
-          read_stats: write_partner
-          uploadInputPartner: write_partner
+          uploadInputPartner: write_input_partner
     springdoc:
       swagger-ui:
         oauth:
           client-id: Cl2-CX-Portal
-    spring:
-      codec:
-        max-in-memory-size: 5MB
   applicationSecrets:
     spring:
       datasource:
@@ -134,7 +123,6 @@ bpdm-pool:
         context-path: "/pool"
     bpdm:
       tasks:
-        cron: "*/30 * * * * *"
         batchSize: 20
       client:
         orchestrator:
@@ -145,14 +133,6 @@ bpdm-pool:
         auth-server-url: https://centralidp.dev.demo.catena-x.net/auth
         realm: CX-Central
         client-id: Cl7-CX-BPDM
-        permissions:
-          readPartner: write_partner
-          writePartner: write_partner
-          readMemberPartner: write_partner
-          readMetaData: write_partner
-          writeMetaData: write_partner
-          readChangelog: write_partner
-          readMemberChangelog: write_partner
     springdoc:
       swagger-ui:
         oauth:
