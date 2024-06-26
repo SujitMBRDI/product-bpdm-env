@@ -38,6 +38,14 @@ bpdm-gate:
     bpdm:
       bpn:
         owner-bpn-l:
+      tasks:
+        creation:
+          fromSharingMember:
+            cron: '*/30 * * * * *'
+            batchSize: 20
+          fromPool:
+            batchSize: 20
+            cron: '*/30 * * * * *'
       client:
         orchestrator:
           base-url: "http://bpdm-dev-orchestrator/orchestrator"
@@ -61,14 +69,6 @@ bpdm-gate:
           writeSharingState: write_partner
           read_stats: write_partner
           uploadInputPartner: write_partner
-      tasks:
-        creation:
-          fromSharingMember:
-            cron: '*/30 * * * * *'
-            batchSize: 20
-          fromPool:
-            batchSize: 20
-            cron: '*/30 * * * * *'
     springdoc:
       swagger-ui:
         oauth:
