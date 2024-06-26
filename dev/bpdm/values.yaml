@@ -75,7 +75,7 @@ bpdm-gate:
           client-id: Cl2-CX-Portal
     spring:
       codec:
-        max-in-memory-size: 512KB
+        max-in-memory-size: 5MB
   applicationSecrets:
     spring:
       datasource:
