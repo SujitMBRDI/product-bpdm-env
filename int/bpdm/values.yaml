@@ -128,7 +128,7 @@ bpdm-pool:
   applicationSecrets:
     spring:
       datasource:
-        password:<path:bpdm/data/int/bpdm/postgresql#password>
+        password: <path:bpdm/data/int/bpdm/postgresql#password>
     bpdm:
       client:
         orchestrator:
