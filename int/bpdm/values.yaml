@@ -4,11 +4,11 @@ bpdm-gate:
   replicaCount: 1
   resources:
     limits:
-      cpu: 800m
-      memory: 2Gi
+      cpu: 500m
+      memory: 1Gi
     requests:
-      cpu: 300m
-      memory: 2Gi
+      cpu: 100m
+      memory: 1Gi
   ingress:
     enabled: true
     hosts:
@@ -79,11 +79,11 @@ bpdm-pool:
   enabled: true
   resources:
     limits:
-      cpu: 800m
-      memory: 2Gi
+      cpu: 500m
+      memory: 1Gi
     requests:
-      cpu: 300m
-      memory: 2Gi
+      cpu: 100m
+      memory: 1Gi
   ingress:
     enabled: true
     annotations:
@@ -144,11 +144,11 @@ bpdm-orchestrator:
   replicaCount: 1
   resources:
     limits:
-      cpu: 800m
-      memory: 2Gi
+      cpu: 500m
+      memory: 1Gi
     requests:
-      cpu: 300m
-      memory: 2Gi
+      cpu: 100m
+      memory: 1Gi
   ingress:
     enabled: true
     annotations:
@@ -199,11 +199,11 @@ bpdm-cleaning-service-dummy:
   replicaCount: 1
   resources:
     limits:
-      cpu: 800m
-      memory: 2Gi
+      cpu: 500m
+      memory: 1Gi
     requests:
-      cpu: 300m
-      memory: 2Gi
+      cpu: 100m
+      memory: 1Gi
   applicationConfig:
     bpdm:
       client:
