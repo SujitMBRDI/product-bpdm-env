@@ -10,6 +10,9 @@ bpdm-gate:
       cpu: 100m
       memory: 2Gi
   ingress:
+    metadata:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
     enabled: true
     hosts:
       - host: business-partners.int.catena-x.net
@@ -17,7 +20,7 @@ bpdm-gate:
           - path: "/companies/test-company"
             pathType: Prefix
     tls:
-      - secretName: tls-secret-bpdm
+      - secretName: tls-secret-bpdm-gate
         hosts:
           - business-partners.int.catena-x.net
   livenessProbe:
@@ -85,6 +88,9 @@ bpdm-pool:
       cpu: 100m
       memory: 2Gi
   ingress:
+    metadata:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
     enabled: true
     annotations:
       kubernetes.io/ingress.class: nginx
@@ -95,7 +101,7 @@ bpdm-pool:
           - path: /pool
             pathType: Prefix
     tls:
-      - secretName: tls-secret-bpdm
+      - secretName: tls-secret-bpdm-pool
         hosts:
           - business-partners.int.catena-x.net
   livenessProbe:
@@ -150,6 +156,9 @@ bpdm-orchestrator:
       cpu: 100m
       memory: 2Gi
   ingress:
+    metadata:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
     enabled: true
     annotations:
       kubernetes.io/ingress.class: nginx
@@ -160,7 +169,7 @@ bpdm-orchestrator:
           - path: /orchestrator
             pathType: Prefix
     tls:
-      - secretName: tls-secret-bpdm
+      - secretName: tls-secret-bpdm-orchestrator
         hosts:
           - business-partners.int.catena-x.net
   livenessProbe:
@@ -239,6 +248,9 @@ keycloak:
   auth:
     adminPassword: <path:bpdm/data/int/bpdm/keycloak/admin#admin-password>
   ingress:
+    metadata:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
     enabled: true
     ingressClassName: "nginx"
     hostname: "keycloak-bpdm.int.catena-x.net"
