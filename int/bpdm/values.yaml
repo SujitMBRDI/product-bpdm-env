@@ -246,6 +246,7 @@ keycloak:
     annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
     enabled: true
+    tls: true
     ingressClassName: "nginx"
     hostname: "keycloak-bpdm.int.catena-x.net"
     servicePort: http
