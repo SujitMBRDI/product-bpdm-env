@@ -196,6 +196,13 @@ bpdm-orchestrator:
             clean: write_partner
             cleanAndSync: write_partner
             poolSync: write_partner
+  applicationSecrets:
+    spring:
+      datasource:
+        password: <path:bpdm/data/int/bpdm/postgresql#password>
+  postgres:
+    enabled: false
+    fullnameOverride: ""
 
 bpdm-cleaning-service-dummy:
   fullnameOverride: bpdm-int-cleaning-service
