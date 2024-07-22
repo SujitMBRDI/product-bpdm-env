@@ -9,19 +9,19 @@ iatp:
   # Decentralized Identifier
   id: "did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL000000000CX4"
   trustedIssuers:
-    - "did:web:tbd"
+    - "did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHK"
   sts:
     dim:
-      url: ""
+      url: "https://dis-integration-service-prod.eu10.dim.cloud.sap/api/v2.0.0/iatp/catena-x-portal"
     oauth:
       token_url: "https://bpnl000000000cx4-bpdm--provider.authentication.eu10.hana.ondemand.com/oauth/token"
       client:
-        id: "afe9d06b-e269-49cb-ab44-51deb0fb4d38"
+        id: "sb-ad1f7564-2b95-4dac-9bd9-af6f60fbd1f9!b496970|ica-production-dim-prod-eu10-004-prod-dis-cloud-approuter!b174292"
         secret_alias: "int/edc/bpdm/client-secret"
 
 controlplane:
   env:
-    EDC_IAM_TRUSTED-ISSUER_ISSUER1_ID: "did:web:tbd"
+    EDC_IAM_TRUSTED-ISSUER_ISSUER1_ID: "did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHK"
   endpoints:
     # -- data management api, used by internal users, can be added to an ingress and must not be internet facing
     management:
@@ -53,7 +53,7 @@ controlplane:
 
 dataplane:
   env:
-    EDC_IAM_TRUSTED-ISSUER_ISSUER1_ID: "did:web:tbd"
+    EDC_IAM_TRUSTED-ISSUER_ISSUER1_ID: "did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHK"
   endpoints:
     proxy:
       authKey: <path:bpdm/data/int/edc/bpdm/api#proxy-key>
