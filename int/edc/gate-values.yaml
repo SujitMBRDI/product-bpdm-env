@@ -26,7 +26,7 @@ controlplane:
     # -- data management api, used by internal users, can be added to an ingress and must not be internet facing
     management:
       # -- authentication key, must be attached to each 'X-Api-Key' request header
-      authKey: <path:bpdm/data/int/edc/bpdm/api#management-key>
+      authKey: <path:bpdm/data/int/bpdm/edc/api#management-key>
   bdrs:
     server:
       url: "https://bpn-did-resolution-service.int.catena-x.net/api/directory"
@@ -56,7 +56,7 @@ dataplane:
     EDC_IAM_TRUSTED-ISSUER_ISSUER1_ID: "did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHK"
   endpoints:
     proxy:
-      authKey: <path:bpdm/data/int/edc/bpdm/api#proxy-key>
+      authKey: <path:bpdm/data/int/bpdm/edc/api#proxy-key>
   ## Ingress declaration to expose the network service.
   ingresses:
     ## Public / Internet facing Ingress
