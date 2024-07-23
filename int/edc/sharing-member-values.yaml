@@ -26,7 +26,7 @@ controlplane:
     # -- data management api, used by internal users, can be added to an ingress and must not be internet facing
     management:
       # -- authentication key, must be attached to each 'X-Api-Key' request header
-      authKey: <path:bpdm/data/int/sharing-members/test/edc/client-secret/api#management-key>
+      authKey: <path:bpdm/data/int/sharing-members/test/edc/api#management-key>
   bdrs:
     server:
       url: "https://bpn-did-resolution-service.int.catena-x.net/api/directory"
