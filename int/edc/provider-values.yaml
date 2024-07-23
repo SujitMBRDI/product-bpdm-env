@@ -37,7 +37,7 @@ controlplane:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
       # -- The hostname to be used to precisely map incoming traffic onto the underlying network service
-      hostname: "business-partners-edc.int.catena-x.net"
+      hostname: "bpdm-edc.int.catena-x.net"
       className: "nginx"
       # -- EDC endpoints exposed by this ingress resource
       endpoints:
@@ -64,7 +64,7 @@ dataplane:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
       # -- The hostname to be used to precisely map incoming traffic onto the underlying network service
-      hostname: "business-partners-edc.int.catena-x.net"
+      hostname: "bpdm-edc.int.catena-x.net"
       # -- EDC endpoints exposed by this ingress resource
       endpoints:
         - public
