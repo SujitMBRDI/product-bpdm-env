@@ -97,4 +97,4 @@ vault:
     url: "https://vault.core.catena-x.net"
     token: <path:bpdm/data/int/bpdm/edc/vault#token>
     paths:
-      secret: /v2/bpdm
+      secret: /v1/bpdm
