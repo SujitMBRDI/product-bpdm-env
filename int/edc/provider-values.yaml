@@ -49,7 +49,7 @@ controlplane:
         # -- Enables TLS on the ingress resource
         enabled: true
         # -- If present overwrites the default secret name
-        secretName: tls-secret-bpdm-edc-controlplane
+        secretName: tls-secret-bpdm-provider-edc-controlplane
 
 dataplane:
   env:
@@ -75,7 +75,7 @@ dataplane:
         # -- Enables TLS on the ingress resource
         enabled: true
         # -- If present overwrites the default secret name
-        secretName: tls-secret-bpdm-edc-dataplane
+        secretName: tls-secret-bpdm-provider-edc-dataplane
   token:
     signer:
       privatekey_alias: "int/bpdm/edc/token-private-key"
