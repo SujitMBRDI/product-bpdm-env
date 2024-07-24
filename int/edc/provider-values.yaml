@@ -17,7 +17,7 @@ iatp:
       token_url: "https://bpnl000000000cx4-bpdm--provider.authentication.eu10.hana.ondemand.com/oauth/token"
       client:
         id: "sb-ad1f7564-2b95-4dac-9bd9-af6f60fbd1f9!b496970|ica-production-dim-prod-eu10-004-prod-dis-cloud-approuter!b174292"
-        secret_alias: "int/edc/bpdm/client-secret"
+        secret_alias: "int/bpdm/edc/client-secret"
 
 controlplane:
   env:
@@ -97,4 +97,4 @@ vault:
     url: "https://vault.core.catena-x.net"
     token: <path:bpdm/data/int/bpdm/edc/vault#token>
     paths:
-      secret: /v2/bpdm
+      secret: /v1/bpdm
