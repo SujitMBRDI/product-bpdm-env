@@ -23,13 +23,13 @@ bpdm-gate:
           - business-partners.int.catena-x.net
   livenessProbe:
     httpGet:
-      path: "/companies/test-company/actuator/health/liveness"
+      path: "/companies/test-sharing-member/actuator/health/liveness"
   readinessProbe:
     httpGet:
-      path: "/companies/test-company/actuator/health/readiness"
+      path: "/companies/test-sharing-member/actuator/health/readiness"
   startupProbe:
     httpGet:
-      path: "/companies/test-company/actuator/health/readiness"
+      path: "/companies/test-sharing-member/actuator/health/readiness"
   applicationConfig:
     server:
       servlet:
