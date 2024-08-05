@@ -55,6 +55,8 @@ bpdm-gate:
         auth-server-url: https://centralidp.int.catena-x.net/auth
         realm: CX-Central
         client-id: Cl16-CX-BPDMGate
+        permissions:
+          uploadInputPartner: write_input_partner
     springdoc:
       swagger-ui:
         oauth:
