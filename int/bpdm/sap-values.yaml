@@ -1,0 +1,92 @@
+bpdm-gate:
+  enabled: true
+  replicaCount: 1
+  resources:
+    limits:
+      cpu: 500m
+      memory: 2Gi
+    requests:
+      cpu: 100m
+      memory: 2Gi
+  ingress:
+    annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+    enabled: true
+    hosts:
+      - host: business-partners.int.catena-x.net
+        paths:
+          - path: "/companies/sap"
+            pathType: Prefix
+    tls:
+      - secretName: tls-secret-bpdm-sap-gate
+        hosts:
+          - business-partners.int.catena-x.net
+  livenessProbe:
+    httpGet:
+      path: "/companies/sap/actuator/health/liveness"
+  readinessProbe:
+    httpGet:
+      path: "/companies/sap/actuator/health/readiness"
+  startupProbe:
+    httpGet:
+      path: "/companies/sap/actuator/health/readiness"
+  applicationConfig:
+    server:
+      servlet:
+        context-path: "/companies/sap"
+    bpdm:
+      bpn:
+        owner-bpn-l: "BPNL0000000009Z7"
+      client:
+        pool:
+          base-url: "http://bpdm-int-pool/pool"
+          registration:
+            client-id: <path:bpdm/data/int/bpdm/gates/sap/pool-client#client-id>
+        orchestrator:
+          base-url: "http://bpdm-int-orchestrator/orchestrator"
+          registration:
+            client-id: <path:bpdm/data/int/bpdm/gates/sap/orchestrator-client#client-id>
+      security:
+        auth-server-url: https://centralidp.int.catena-x.net/auth
+        realm: CX-Central
+        client-id: Cl16-CX-BPDMGate
+        permissions:
+          uploadInputPartner: write_input_partner
+    springdoc:
+      swagger-ui:
+        oauth:
+          client-id: Cl2-CX-Portal
+  applicationSecrets:
+    spring:
+      datasource:
+        password: <path:bpdm/data/int/bpdm/gates/sap/postgresql#password>
+    bpdm:
+      client:
+        pool:
+          registration:
+            client-secret: <path:bpdm/data/int/bpdm/gates/sap/pool-client#client-secret>
+        orchestrator:
+          registration:
+            client-secret: <path:bpdm/data/int/bpdm/gates/sap/orchestrator-client#client-secret>
+
+  postgres:
+    enabled: false
+    fullnameOverride: ""
+
+bpdm-pool:
+  enabled: false
+
+bpdm-orchestrator:
+  enabled: false
+
+bpdm-cleaning-service-dummy:
+  enabled: false
+
+postgres:
+  fullnameOverride: ""
+  auth:
+    postgresPassword: <path:bpdm/data/int/bpdm/gates/sap/postgresql#postgres-password>
+    password: <path:bpdm/data/int/bpdm/gates/sap/postgresql#password>
+
+keycloak:
+  enabled: false
