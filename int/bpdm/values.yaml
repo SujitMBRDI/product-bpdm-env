@@ -45,7 +45,7 @@ bpdm-gate:
               batchSize: 20
               starts-as-ready: false
             fromPool:
-              batchSize: 2ß
+              batchSize: 20
           check:
             batchSize: 20
       client:

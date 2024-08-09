@@ -42,7 +42,7 @@ bpdm-gate:
           fromSharingMember:
             batchSize: 20
           fromPool:
-            batchSize: 2ß
+            batchSize: 20
         check:
           batchSize: 20
       client:
