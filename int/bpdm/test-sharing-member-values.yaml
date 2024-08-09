@@ -37,6 +37,14 @@ bpdm-gate:
     bpdm:
       bpn:
         owner-bpn-l: "BPNL000000000BXT"
+      tasks:
+        creation:
+          fromSharingMember:
+            batchSize: 20
+          fromPool:
+            batchSize: 2ß
+        check:
+          batchSize: 20
       client:
         pool:
           base-url: "http://bpdm-int-pool/pool"

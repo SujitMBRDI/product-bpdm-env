@@ -39,9 +39,15 @@ bpdm-gate:
       bpn:
         owner-bpn-l:
       tasks:
-        creation:
-          fromSharingMember:
-            starts-as-ready: false
+        tasks:
+          creation:
+            fromSharingMember:
+              batchSize: 20
+              starts-as-ready: false
+            fromPool:
+              batchSize: 2ß
+          check:
+            batchSize: 20
       client:
         pool:
           base-url: "http://bpdm-int-pool/pool"
@@ -117,6 +123,8 @@ bpdm-pool:
       servlet:
         context-path: "/pool"
     bpdm:
+      tasks:
+        batchSize: 20
       client:
         orchestrator:
           base-url: "http://bpdm-int-orchestrator/orchestrator"
