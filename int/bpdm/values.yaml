@@ -190,6 +190,8 @@ bpdm-orchestrator:
       servlet:
         context-path: "/orchestrator"
     bpdm:
+      task:
+        timeoutCheckCron: "-"
       security:
         auth-server-url: https://centralidp.int.catena-x.net/auth
         realm: CX-Central
