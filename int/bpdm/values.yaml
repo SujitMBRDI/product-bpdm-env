@@ -39,15 +39,14 @@ bpdm-gate:
       bpn:
         owner-bpn-l:
       tasks:
-        tasks:
-          creation:
-            fromSharingMember:
-              batchSize: 20
-              starts-as-ready: false
-            fromPool:
-              batchSize: 20
-          check:
+        creation:
+          fromSharingMember:
             batchSize: 20
+            starts-as-ready: false
+          fromPool:
+            batchSize: 20
+        check:
+          batchSize: 20
       client:
         pool:
           base-url: "http://bpdm-int-pool/pool"
