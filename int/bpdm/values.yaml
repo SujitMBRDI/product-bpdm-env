@@ -42,7 +42,7 @@ bpdm-gate:
         creation:
           fromSharingMember:
             batchSize: 20
-            starts-as-ready: false
+            starts-as-ready: true
           fromPool:
             batchSize: 20
         check:
