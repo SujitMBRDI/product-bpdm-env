@@ -1,14 +1,5 @@
 bpdm-gate:
   fullnameOverride: bpdm-int-gate-test-company
-  enabled: true
-  replicaCount: 1
-  resources:
-    limits:
-      cpu: 500m
-      memory: 2Gi
-    requests:
-      cpu: 100m
-      memory: 2Gi
   ingress:
     annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -41,12 +32,7 @@ bpdm-gate:
       tasks:
         creation:
           fromSharingMember:
-            batchSize: 20
             starts-as-ready: true
-          fromPool:
-            batchSize: 20
-        check:
-          batchSize: 20
       client:
         pool:
           base-url: "http://bpdm-int-pool/pool"
@@ -58,14 +44,8 @@ bpdm-gate:
             client-id: <path:bpdm/data/int/bpdm/gates/portal/orchestrator-client#client-id>
       security:
         auth-server-url: https://centralidp.int.catena-x.net/auth
-        realm: CX-Central
-        client-id: Cl16-CX-BPDMGate
         permissions:
           uploadInputPartner: write_input_partner
-    springdoc:
-      swagger-ui:
-        oauth:
-          client-id: Cl2-CX-Portal
   applicationSecrets:
     spring:
       datasource:
@@ -79,20 +59,8 @@ bpdm-gate:
           registration:
             client-secret: <path:bpdm/data/int/bpdm/gates/portal/orchestrator-client#client-secret>
 
-  postgres:
-    enabled: false
-    fullnameOverride: ""
-
 bpdm-pool:
   fullnameOverride: bpdm-int-pool
-  enabled: true
-  resources:
-    limits:
-      cpu: 500m
-      memory: 2Gi
-    requests:
-      cpu: 100m
-      memory: 2Gi
   ingress:
     enabled: true
     annotations:
@@ -122,8 +90,6 @@ bpdm-pool:
       servlet:
         context-path: "/pool"
     bpdm:
-      tasks:
-        batchSize: 20
       client:
         orchestrator:
           base-url: "http://bpdm-int-orchestrator/orchestrator"
@@ -131,8 +97,6 @@ bpdm-pool:
             client-id: <path:bpdm/data/int/bpdm/pool/orchestrator-client#client-id>
       security:
         auth-server-url: https://centralidp.int.catena-x.net/auth
-        realm: CX-Central
-        client-id: Cl7-CX-BPDM
     springdoc:
       swagger-ui:
         oauth:
@@ -146,21 +110,9 @@ bpdm-pool:
         orchestrator:
           registration:
             client-secret: <path:bpdm/data/int/bpdm/pool/orchestrator-client#client-secret>
-  postgres:
-    enabled: false
-    fullnameOverride: ""
 
 bpdm-orchestrator:
   fullnameOverride: bpdm-int-orchestrator
-  enabled: true
-  replicaCount: 1
-  resources:
-    limits:
-      cpu: 500m
-      memory: 2Gi
-    requests:
-      cpu: 100m
-      memory: 2Gi
   ingress:
     enabled: true
     annotations:
@@ -190,42 +142,16 @@ bpdm-orchestrator:
       servlet:
         context-path: "/orchestrator"
     bpdm:
-      task:
-        timeoutCheckCron: "-"
       security:
         auth-server-url: https://centralidp.int.catena-x.net/auth
-        realm: CX-Central
-        client-id: Cl7-CX-BPDM
-        permissions:
-          createTask: write_partner
-          readTask: write_partner
-          reservation:
-            clean: write_partner
-            cleanAndSync: write_partner
-            poolSync: write_partner
-          result:
-            clean: write_partner
-            cleanAndSync: write_partner
-            poolSync: write_partner
   applicationSecrets:
     spring:
       datasource:
         password: <path:bpdm/data/int/bpdm/postgresql#password>
-  postgres:
-    enabled: false
-    fullnameOverride: ""
 
 bpdm-cleaning-service-dummy:
   fullnameOverride: bpdm-int-cleaning-service
   enabled: true
-  replicaCount: 1
-  resources:
-    limits:
-      cpu: 500m
-      memory: 2Gi
-    requests:
-      cpu: 100m
-      memory: 2Gi
   applicationConfig:
     bpdm:
       client:
@@ -243,28 +169,9 @@ bpdm-cleaning-service-dummy:
             client-secret:  <path:bpdm/data/int/bpdm/cleaning-service/orchestrator-client#client-secret>
 
 postgres:
-  fullnameOverride: ""
   auth:
     postgresPassword: <path:bpdm/data/int/bpdm/postgresql#postgres-password>
     password: <path:bpdm/data/int/bpdm/postgresql#password>
 
-keycloak:
-  enabled: true
-  postgresql:
-    enabled: true
-    nameOverride: "keycloak-postgres"
-    auth:
-      postgresPassword: <path:bpdm/data/int/bpdm/keycloak/postgresql#postgresql-password>
-      username: bn_keycloak
-      password: <path:bpdm/data/int/bpdm/keycloak/postgresql#password>
-      database: bitnami_keycloak
-  auth:
-    adminPassword: <path:bpdm/data/int/bpdm/keycloak/admin#admin-password>
-  ingress:
-    annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-    enabled: true
-    tls: true
-    ingressClassName: "nginx"
-    hostname: "keycloak-bpdm.int.catena-x.net"
-    servicePort: http
+centralidp:
+  enabled: false
