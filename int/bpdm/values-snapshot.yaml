@@ -8,6 +8,8 @@ centralidp:
   enabled: false
 
 bpdm-gate:
+  image:
+    tag: "6.2.0-SNAPSHOT"
   ingress:
     annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -64,6 +66,8 @@ bpdm-gate:
             client-secret: <path:bpdm/data/int/bpdm/gates/portal/orchestrator-client#client-secret>
 
 bpdm-pool:
+  image:
+    tag: "6.2.0-SNAPSHOT"
   ingress:
     enabled: true
     annotations:
@@ -113,6 +117,8 @@ bpdm-pool:
             client-secret: <path:bpdm/data/int/bpdm/pool/orchestrator-client#client-secret>
 
 bpdm-orchestrator:
+  image:
+    tag: "6.2.0-SNAPSHOT"
   ingress:
     enabled: true
     annotations:
@@ -152,6 +158,8 @@ bpdm-orchestrator:
         password: <path:bpdm/data/int/bpdm/postgresql#password>
 
 bpdm-cleaning-service-dummy:
+  image:
+    tag: "6.2.0-SNAPSHOT"
   enabled: true
   applicationConfig:
     bpdm:
