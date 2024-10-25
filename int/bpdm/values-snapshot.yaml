@@ -1,5 +1,5 @@
 postgres:
-  fullnameOverride: &bpdmPostgres "bpdm-postgres"
+  fullnameOverride: &bpdmPostgres "bpdm-snapshot-postgres"
   auth:
     postgresPassword: <path:bpdm/data/int/bpdm/postgresql#postgres-password>
     password: <path:bpdm/data/int/bpdm/postgresql#password>
@@ -8,20 +8,22 @@ centralidp:
   enabled: false
 
 bpdm-gate:
+  image:
+    tag: "latest-SNAPSHOT"
   startupDelaySeconds: 1
   ingress:
     annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
     enabled: true
     hosts:
-      - host: business-partners.int.catena-x.net
+      - host: business-partners-snapshot.int.catena-x.net
         paths:
           - path: "/companies/test-company"
             pathType: Prefix
     tls:
-      - secretName: tls-secret-bpdm-gate
+      - secretName: tls-secret-bpdm-gate-snapshot
         hosts:
-          - business-partners.int.catena-x.net
+          - business-partners-snapshot.int.catena-x.net
   livenessProbe:
     httpGet:
       path: "/companies/test-company/actuator/health/liveness"
@@ -40,11 +42,11 @@ bpdm-gate:
         host: *bpdmPostgres
       client:
         pool:
-          base-url: "https://business-partners.int.catena-x.net/pool"
+          base-url: "https://business-partners-snapshot.int.catena-x.net/pool"
           registration:
             client-id: <path:bpdm/data/int/bpdm/gates/portal/pool-client#client-id>
         orchestrator:
-          base-url: "https://business-partners.int.catena-x.net/orchestrator"
+          base-url: "https://business-partners-snapshot.int.catena-x.net/orchestrator"
           registration:
             client-id: <path:bpdm/data/int/bpdm/gates/portal/orchestrator-client#client-id>
       security:
@@ -65,6 +67,8 @@ bpdm-gate:
             client-secret: <path:bpdm/data/int/bpdm/gates/portal/orchestrator-client#client-secret>
 
 bpdm-pool:
+  image:
+    tag: "latest-SNAPSHOT"
   startupDelaySeconds: 1
   ingress:
     enabled: true
@@ -73,14 +77,14 @@ bpdm-pool:
       kubernetes.io/ingress.class: nginx
       nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     hosts:
-      - host: business-partners.int.catena-x.net
+      - host: business-partners-snapshot.int.catena-x.net
         paths:
           - path: /pool
             pathType: Prefix
     tls:
-      - secretName: tls-secret-bpdm-pool
+      - secretName: tls-secret-bpdm-pool-snapshot
         hosts:
-          - business-partners.int.catena-x.net
+          - business-partners-snapshot.int.catena-x.net
   livenessProbe:
     httpGet:
       path: "/pool/actuator/health/liveness"
@@ -99,7 +103,7 @@ bpdm-pool:
         host: *bpdmPostgres
       client:
         orchestrator:
-          base-url: "https://business-partners.int.catena-x.net/orchestrator"
+          base-url: "https://business-partners-snapshot.int.catena-x.net/orchestrator"
           registration:
             client-id: <path:bpdm/data/int/bpdm/pool/orchestrator-client#client-id>
       security:
@@ -115,6 +119,8 @@ bpdm-pool:
             client-secret: <path:bpdm/data/int/bpdm/pool/orchestrator-client#client-secret>
 
 bpdm-orchestrator:
+  image:
+    tag: "latest-SNAPSHOT"
   startupDelaySeconds: 1
   ingress:
     enabled: true
@@ -123,14 +129,14 @@ bpdm-orchestrator:
       kubernetes.io/ingress.class: nginx
       nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     hosts:
-      - host: business-partners.int.catena-x.net
+      - host: business-partners-snapshot.int.catena-x.net
         paths:
           - path: /orchestrator
             pathType: Prefix
     tls:
-      - secretName: tls-secret-bpdm-orchestrator
+      - secretName: tls-secret-bpdm-orchestrator-snapshot
         hosts:
-          - business-partners.int.catena-x.net
+          - business-partners-snapshot.int.catena-x.net
   livenessProbe:
     httpGet:
       path: "orchestrator/actuator/health/liveness"
@@ -155,12 +161,14 @@ bpdm-orchestrator:
         password: <path:bpdm/data/int/bpdm/postgresql#password>
 
 bpdm-cleaning-service-dummy:
+  image:
+    tag: "latest-SNAPSHOT"
   startupDelaySeconds: 1
   applicationConfig:
     bpdm:
       client:
         orchestrator:
-          base-url: "https://business-partners.int.catena-x.net/orchestrator"
+          base-url: "https://business-partners-snapshot.int.catena-x.net/orchestrator"
           provider:
             issuer-uri: https://centralidp.int.catena-x.net/auth/realms/CX-Central
           registration:
