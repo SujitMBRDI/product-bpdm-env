@@ -9,7 +9,8 @@ centralidp:
 
 bpdm-gate:
   image:
-    tag: "6.2.0-SNAPSHOT"
+    tag: "latest-SNAPSHOT"
+  startupDelaySeconds: 1
   ingress:
     annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -67,7 +68,8 @@ bpdm-gate:
 
 bpdm-pool:
   image:
-    tag: "6.2.0-SNAPSHOT"
+    tag: "latest-SNAPSHOT"
+  startupDelaySeconds: 1
   ingress:
     enabled: true
     annotations:
@@ -118,7 +120,8 @@ bpdm-pool:
 
 bpdm-orchestrator:
   image:
-    tag: "6.2.0-SNAPSHOT"
+    tag: "latest-SNAPSHOT"
+  startupDelaySeconds: 1
   ingress:
     enabled: true
     annotations:
@@ -159,8 +162,8 @@ bpdm-orchestrator:
 
 bpdm-cleaning-service-dummy:
   image:
-    tag: "6.2.0-SNAPSHOT"
-  enabled: true
+    tag: "latest-SNAPSHOT"
+  startupDelaySeconds: 1
   applicationConfig:
     bpdm:
       client:

@@ -1,5 +1,14 @@
+postgres:
+  fullnameOverride: &bpdmPostgres "bpdm-postgres"
+  auth:
+    postgresPassword: <path:bpdm/data/int/bpdm/postgresql#postgres-password>
+    password: <path:bpdm/data/int/bpdm/postgresql#password>
+
+centralidp:
+  enabled: false
+
 bpdm-gate:
-  fullnameOverride: bpdm-int-gate-test-company
+  startupDelaySeconds: 1
   ingress:
     annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -27,19 +36,15 @@ bpdm-gate:
       servlet:
         context-path: "/companies/test-company"
     bpdm:
-      bpn:
-        owner-bpn-l:
-      tasks:
-        creation:
-          fromSharingMember:
-            starts-as-ready: true
+      datasource:
+        host: *bpdmPostgres
       client:
         pool:
-          base-url: "http://bpdm-int-pool/pool"
+          base-url: "https://business-partners.int.catena-x.net/pool"
           registration:
             client-id: <path:bpdm/data/int/bpdm/gates/portal/pool-client#client-id>
         orchestrator:
-          base-url: "http://bpdm-int-orchestrator/orchestrator"
+          base-url: "https://business-partners.int.catena-x.net/orchestrator"
           registration:
             client-id: <path:bpdm/data/int/bpdm/gates/portal/orchestrator-client#client-id>
       security:
@@ -60,7 +65,7 @@ bpdm-gate:
             client-secret: <path:bpdm/data/int/bpdm/gates/portal/orchestrator-client#client-secret>
 
 bpdm-pool:
-  fullnameOverride: bpdm-int-pool
+  startupDelaySeconds: 1
   ingress:
     enabled: true
     annotations:
@@ -90,17 +95,15 @@ bpdm-pool:
       servlet:
         context-path: "/pool"
     bpdm:
+      datasource:
+        host: *bpdmPostgres
       client:
         orchestrator:
-          base-url: "http://bpdm-int-orchestrator/orchestrator"
+          base-url: "https://business-partners.int.catena-x.net/orchestrator"
           registration:
             client-id: <path:bpdm/data/int/bpdm/pool/orchestrator-client#client-id>
       security:
         auth-server-url: https://centralidp.int.catena-x.net/auth
-    springdoc:
-      swagger-ui:
-        oauth:
-          client-id: Cl2-CX-Portal
   applicationSecrets:
     spring:
       datasource:
@@ -112,7 +115,7 @@ bpdm-pool:
             client-secret: <path:bpdm/data/int/bpdm/pool/orchestrator-client#client-secret>
 
 bpdm-orchestrator:
-  fullnameOverride: bpdm-int-orchestrator
+  startupDelaySeconds: 1
   ingress:
     enabled: true
     annotations:
@@ -142,6 +145,8 @@ bpdm-orchestrator:
       servlet:
         context-path: "/orchestrator"
     bpdm:
+      datasource:
+        host: *bpdmPostgres
       security:
         auth-server-url: https://centralidp.int.catena-x.net/auth
   applicationSecrets:
@@ -150,13 +155,12 @@ bpdm-orchestrator:
         password: <path:bpdm/data/int/bpdm/postgresql#password>
 
 bpdm-cleaning-service-dummy:
-  fullnameOverride: bpdm-int-cleaning-service
-  enabled: true
+  startupDelaySeconds: 1
   applicationConfig:
     bpdm:
       client:
         orchestrator:
-          base-url: "http://bpdm-int-orchestrator/orchestrator"
+          base-url: "https://business-partners.int.catena-x.net/orchestrator"
           provider:
             issuer-uri: https://centralidp.int.catena-x.net/auth/realms/CX-Central
           registration:
@@ -167,11 +171,3 @@ bpdm-cleaning-service-dummy:
         orchestrator:
           registration:
             client-secret:  <path:bpdm/data/int/bpdm/cleaning-service/orchestrator-client#client-secret>
-
-postgres:
-  auth:
-    postgresPassword: <path:bpdm/data/int/bpdm/postgresql#postgres-password>
-    password: <path:bpdm/data/int/bpdm/postgresql#password>
-
-centralidp:
-  enabled: false
