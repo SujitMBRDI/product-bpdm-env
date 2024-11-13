@@ -14,9 +14,9 @@ iatp:
     dim:
       url: "https://dis-integration-service-prod.eu10.dim.cloud.sap/api/v2.0.0/iatp/catena-x-portal"
     oauth:
-      token_url: "https://bpnl000000000bxt-bpdm--sharing--member.authentication.eu10.hana.ondemand.com/oauth/token"
+      token_url: "https://7d8afa41-2fa1-471c-bce6-4433de34d93a-td7lnqz3.authentication.eu10.hana.ondemand.com/oauth/token"
       client:
-        id: "sb-ed3ddbb0-c2db-4997-b0ad-ecbaed834e37!b496968|ica-production-dim-prod-eu10-004-prod-dis-cloud-approuter!b174292"
+        id: "sb-e91ba924-e3c3-4ff5-838b-58f2eca0d4a8!b517493|ica-production-dim-prod-eu10-004-prod-dis-cloud-approuter!b174292"
         secret_alias: "int/sharing-members/test/edc/client-secret"
 
 controlplane:
