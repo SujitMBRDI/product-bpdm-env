@@ -1,5 +1,5 @@
 postgres:
-  fullnameOverride: &bpdmPostgres "bpdm-postgres"
+  fullnameOverride: &bpdmPostgres "bpdm-test-sharing-member-postgres"
   auth:
     postgresPassword: <path:bpdm/data/int/bpdm/gates/test-sharing-member/postgresql#postgres-password>
     password: <path:bpdm/data/int/bpdm/gates/test-sharing-member/postgresql#password>
