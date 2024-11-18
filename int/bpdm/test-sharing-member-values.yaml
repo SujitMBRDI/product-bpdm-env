@@ -1,13 +1,15 @@
+postgres:
+  fullnameOverride: &bpdmPostgres "bpdm-postgres"
+  auth:
+    postgresPassword: <path:bpdm/data/int/bpdm/gates/test-sharing-member/postgresql#postgres-password>
+    password: <path:bpdm/data/int/bpdm/gates/test-sharing-member/postgresql#password>
+
+centralidp:
+  enabled: false
+
 bpdm-gate:
   enabled: true
-  replicaCount: 1
-  resources:
-    limits:
-      cpu: 500m
-      memory: 2Gi
-    requests:
-      cpu: 100m
-      memory: 2Gi
+  startupDelaySeconds: 1
   ingress:
     annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -37,33 +39,21 @@ bpdm-gate:
     bpdm:
       bpn:
         owner-bpn-l: "BPNL000000000BXT"
-      tasks:
-        creation:
-          fromSharingMember:
-            batchSize: 20
-          fromPool:
-            batchSize: 20
-        check:
-          batchSize: 20
+      datasource:
+        host: *bpdmPostgres
       client:
         pool:
-          base-url: "http://bpdm-int-pool/pool"
+          base-url: "http://bpdm-pool/pool"
           registration:
             client-id: <path:bpdm/data/int/bpdm/gates/test-sharing-member/pool-client#client-id>
         orchestrator:
-          base-url: "http://bpdm-int-orchestrator/orchestrator"
+          base-url: "http://bpdm-orchestrator/orchestrator"
           registration:
             client-id: <path:bpdm/data/int/bpdm/gates/test-sharing-member/orchestrator-client#client-id>
       security:
         auth-server-url: https://centralidp.int.catena-x.net/auth
-        realm: CX-Central
-        client-id: Cl16-CX-BPDMGate
         permissions:
           uploadInputPartner: write_input_partner
-    springdoc:
-      swagger-ui:
-        oauth:
-          client-id: Cl2-CX-Portal
   applicationSecrets:
     spring:
       datasource:
@@ -77,10 +67,6 @@ bpdm-gate:
           registration:
             client-secret: <path:bpdm/data/int/bpdm/gates/test-sharing-member/orchestrator-client#client-secret>
 
-  postgres:
-    enabled: false
-    fullnameOverride: ""
-
 bpdm-pool:
   enabled: false
 
@@ -88,13 +74,4 @@ bpdm-orchestrator:
   enabled: false
 
 bpdm-cleaning-service-dummy:
-  enabled: false
-
-postgres:
-  fullnameOverride: ""
-  auth:
-    postgresPassword: <path:bpdm/data/int/bpdm/gates/test-sharing-member/postgresql#postgres-password>
-    password: <path:bpdm/data/int/bpdm/gates/test-sharing-member/postgresql#password>
-
-keycloak:
   enabled: false
