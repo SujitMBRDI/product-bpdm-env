@@ -1,5 +1,5 @@
 postgres:
-  fullnameOverride: &bpdmPostgres "bpdm-test-sharing-member-postgres"
+  fullnameOverride: "bpdm-test-sharing-member-postgres"
   auth:
     postgresPassword: <path:bpdm/data/int/bpdm/gates/test-sharing-member/postgresql#postgres-password>
     password: <path:bpdm/data/int/bpdm/gates/test-sharing-member/postgresql#password>
@@ -40,7 +40,7 @@ bpdm-gate:
       bpn:
         owner-bpn-l: "BPNL000000000BXT"
       datasource:
-        host: *bpdmPostgres
+        host: "bpdm-test-sharing-member-postgres"
       client:
         pool:
           base-url: "http://bpdm-pool/pool"
