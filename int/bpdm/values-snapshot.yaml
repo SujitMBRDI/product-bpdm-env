@@ -10,6 +10,7 @@ centralidp:
 bpdm-gate:
   image:
     tag: "latest-SNAPSHOT"
+    imagePullPolicy: Always
   startupDelaySeconds: 1
   ingress:
     annotations:
@@ -69,6 +70,7 @@ bpdm-gate:
 bpdm-pool:
   image:
     tag: "latest-SNAPSHOT"
+    imagePullPolicy: Always
   startupDelaySeconds: 1
   ingress:
     enabled: true
@@ -121,6 +123,7 @@ bpdm-pool:
 bpdm-orchestrator:
   image:
     tag: "latest-SNAPSHOT"
+    imagePullPolicy: Always
   startupDelaySeconds: 1
   ingress:
     enabled: true
@@ -163,6 +166,7 @@ bpdm-orchestrator:
 bpdm-cleaning-service-dummy:
   image:
     tag: "latest-SNAPSHOT"
+    imagePullPolicy: Always
   startupDelaySeconds: 1
   applicationConfig:
     bpdm:
