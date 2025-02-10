@@ -1,8 +1,8 @@
 postgres:
   fullnameOverride: "bpdm-test-sharing-member-postgres"
   auth:
-    postgresPassword: <path:bpdm/data/int/bpdm-test-sharing-member/gate/postgresql#postgres-password>
-    password: <path:bpdm/data/int/bpdm-test-sharing-member/gate/postgresql#password>
+    postgresPassword: <path:bpdm/data/int/bpdm-test-sharing-member/postgresql#postgres-password>
+    password: <path:bpdm/data/int/bpdm-test-sharing-member/postgresql#password>
 
 centralidp:
   enabled: false
@@ -57,7 +57,7 @@ bpdm-gate:
   applicationSecrets:
     spring:
       datasource:
-        password: <path:bpdm/data/int/bpdm-test-sharing-member/gate/postgresql#password>
+        password: <path:bpdm/data/int/bpdm-test-sharing-member/postgresql#password>
     bpdm:
       client:
         pool:

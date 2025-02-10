@@ -1,8 +1,8 @@
 postgres:
   fullnameOverride: "bpdm-sap-postgres"
   auth:
-    postgresPassword: <path:bpdm/data/int/bpdm-sap/gate/postgresql#postgres-password>
-    password: <path:bpdm/data/int/bpdm-sap/gate/postgresql#password>
+    postgresPassword: <path:bpdm/data/int/bpdm-sap/postgresql#postgres-password>
+    password: <path:bpdm/data/int/bpdm-sap/postgresql#password>
 
 centralidp:
   enabled: false
@@ -57,7 +57,7 @@ bpdm-gate:
   applicationSecrets:
     spring:
       datasource:
-        password: <path:bpdm/data/int/bpdm-sap/gate/postgresql#password>
+        password: <path:bpdm/data/int/bpdm-sap/postgresql#password>
     bpdm:
       client:
         pool:
