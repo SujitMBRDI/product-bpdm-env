@@ -42,11 +42,11 @@ bpdm-gate:
         pool:
           base-url: "https://business-partners.int.catena-x.net/pool"
           registration:
-            client-id: <path:bpdm/data/int/bpdm/gates/portal/pool-client#client-id>
+            client-id: <path:bpdm/data/int/bpdm/gate/pool-client#client-id>
         orchestrator:
           base-url: "https://business-partners.int.catena-x.net/orchestrator"
           registration:
-            client-id: <path:bpdm/data/int/bpdm/gates/portal/orchestrator-client#client-id>
+            client-id: <path:bpdm/data/int/bpdm/gate/orchestrator-client#client-id>
       security:
         auth-server-url: https://centralidp.int.catena-x.net/auth
         permissions:
@@ -59,10 +59,10 @@ bpdm-gate:
       client:
         pool:
           registration:
-            client-secret: <path:bpdm/data/int/bpdm/gates/portal/pool-client#client-secret>
+            client-secret: <path:bpdm/data/int/bpdm/gate/pool-client#client-secret>
         orchestrator:
           registration:
-            client-secret: <path:bpdm/data/int/bpdm/gates/portal/orchestrator-client#client-secret>
+            client-secret: <path:bpdm/data/int/bpdm/gate/orchestrator-client#client-secret>
 
 bpdm-pool:
   startupDelaySeconds: 1

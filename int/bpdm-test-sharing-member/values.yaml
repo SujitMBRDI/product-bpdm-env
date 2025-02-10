@@ -1,8 +1,8 @@
 postgres:
   fullnameOverride: "bpdm-test-sharing-member-postgres"
   auth:
-    postgresPassword: <path:bpdm/data/int/bpdm/gates/test-sharing-member/postgresql#postgres-password>
-    password: <path:bpdm/data/int/bpdm/gates/test-sharing-member/postgresql#password>
+    postgresPassword: <path:bpdm/data/int/bpdm-test-sharing-member/gate/postgresql#postgres-password>
+    password: <path:bpdm/data/int/bpdm-test-sharing-member/gate/postgresql#password>
 
 centralidp:
   enabled: false
@@ -45,11 +45,11 @@ bpdm-gate:
         pool:
           base-url: "http://bpdm-pool/pool"
           registration:
-            client-id: <path:bpdm/data/int/bpdm/gates/test-sharing-member/pool-client#client-id>
+            client-id: <path:bpdm/data/int/bpdm-test-sharing-member/gate/pool-client#client-id>
         orchestrator:
           base-url: "http://bpdm-orchestrator/orchestrator"
           registration:
-            client-id: <path:bpdm/data/int/bpdm/gates/test-sharing-member/orchestrator-client#client-id>
+            client-id: <path:bpdm/data/int/bpdm-test-sharing-member/gate/orchestrator-client#client-id>
       security:
         auth-server-url: https://centralidp.int.catena-x.net/auth
         permissions:
@@ -57,15 +57,15 @@ bpdm-gate:
   applicationSecrets:
     spring:
       datasource:
-        password: <path:bpdm/data/int/bpdm/gates/test-sharing-member/postgresql#password>
+        password: <path:bpdm/data/int/bpdm-test-sharing-member/gate/postgresql#password>
     bpdm:
       client:
         pool:
           registration:
-            client-secret: <path:bpdm/data/int/bpdm/gates/test-sharing-member/pool-client#client-secret>
+            client-secret: <path:bpdm/data/int/bpdm-test-sharing-member/gate/pool-client#client-secret>
         orchestrator:
           registration:
-            client-secret: <path:bpdm/data/int/bpdm/gates/test-sharing-member/orchestrator-client#client-secret>
+            client-secret: <path:bpdm/data/int/bpdm-test-sharing-member/gate/orchestrator-client#client-secret>
 
 bpdm-pool:
   enabled: false

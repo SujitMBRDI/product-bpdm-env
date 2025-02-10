@@ -1,0 +1,77 @@
+postgres:
+  fullnameOverride: "bpdm-sap-postgres"
+  auth:
+    postgresPassword: <path:bpdm/data/int/bpdm-sap/gate/postgresql#postgres-password>
+    password: <path:bpdm/data/int/bpdm-sap/gate/postgresql#password>
+
+centralidp:
+  enabled: false
+
+bpdm-gate:
+  enabled: true
+  startupDelaySeconds: 1
+  ingress:
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    enabled: true
+    hosts:
+      - host: business-partners.int.catena-x.net
+        paths:
+          - path: "/companies/sap"
+            pathType: Prefix
+    tls:
+      - secretName: tls-secret-bpdm-sap-gate
+        hosts:
+          - business-partners.int.catena-x.net
+  livenessProbe:
+    httpGet:
+      path: "/companies/sap/actuator/health/liveness"
+  readinessProbe:
+    httpGet:
+      path: "/companies/sap/actuator/health/readiness"
+  startupProbe:
+    httpGet:
+      path: "/companies/sap/actuator/health/readiness"
+  applicationConfig:
+    server:
+      servlet:
+        context-path: "/companies/sap"
+    bpdm:
+      bpn:
+        owner-bpn-l: "BPNL0000000009Z7"
+      datasource:
+        host: "bpdm-sap-postgres"
+      client:
+        pool:
+          base-url: "https://business-partners.int.catena-x.net/pool"
+          registration:
+            client-id: <path:bpdm/data/int/bpdm-sap/gate/pool-client#client-id>
+        orchestrator:
+          base-url: "https://business-partners.int.catena-x.net/orchestrator"
+          registration:
+            client-id: <path:bpdm/data/int/bpdm-sap/gate/orchestrator-client#client-id>
+      security:
+        auth-server-url: https://centralidp.int.catena-x.net/auth
+        permissions:
+          uploadInputPartner: write_input_partner
+  applicationSecrets:
+    spring:
+      datasource:
+        password: <path:bpdm/data/int/bpdm-sap/gate/postgresql#password>
+    bpdm:
+      client:
+        pool:
+          registration:
+            client-secret: <path:bpdm/data/int/bpdm-sap/gate/pool-client#client-secret>
+        orchestrator:
+          registration:
+            client-secret: <path:bpdm/data/int/bpdm-sap/gate/orchestrator-client#client-secret>
+
+bpdm-pool:
+  enabled: false
+
+bpdm-orchestrator:
+  enabled: false
+
+bpdm-cleaning-service-dummy:
+  enabled: false

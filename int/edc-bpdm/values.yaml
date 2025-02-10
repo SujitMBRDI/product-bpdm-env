@@ -17,7 +17,7 @@ iatp:
       token_url: "https://5c9a4f56-0609-49a5-ab86-dd8f93dfd3fa-mak75wiz.authentication.eu10.hana.ondemand.com/oauth/token"
       client:
         id: "sb-311d1dba-dccb-465d-b4e0-3616031d4a1f!b514595|ica-production-dim-prod-eu10-004-prod-dis-cloud-approuter!b174292"
-        secret_alias: "int/bpdm/edc/client-secret"
+        secret_alias: "int/edc-bpdm/wallet-client-secret"
 
 controlplane:
   env:
@@ -26,7 +26,7 @@ controlplane:
     # -- data management api, used by internal users, can be added to an ingress and must not be internet facing
     management:
       # -- authentication key, must be attached to each 'X-Api-Key' request header
-      authKey: <path:bpdm/data/int/bpdm/edc/api#management-key>
+      authKey: <path:bpdm/data/int/edc-bpdm/api#management-key>
   bdrs:
     server:
       url: "https://bpn-did-resolution-service.int.catena-x.net/api/directory"
@@ -49,14 +49,14 @@ controlplane:
         # -- Enables TLS on the ingress resource
         enabled: true
         # -- If present overwrites the default secret name
-        secretName: tls-secret-bpdm-provider-edc-controlplane
+        secretName: tls-secret-edc-bpdm-controlplane
 
 dataplane:
   env:
     EDC_IAM_TRUSTED-ISSUER_ISSUER1_ID: "did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHK"
   endpoints:
     proxy:
-      authKey: <path:bpdm/data/int/bpdm/edc/api#proxy-key>
+      authKey: <path:bpdm/data/int/edc-bpdm/api#proxy-key>
   ## Ingress declaration to expose the network service.
   ingresses:
     ## Public / Internet facing Ingress
@@ -75,12 +75,12 @@ dataplane:
         # -- Enables TLS on the ingress resource
         enabled: true
         # -- If present overwrites the default secret name
-        secretName: tls-secret-bpdm-provider-edc-dataplane
+        secretName: tls-secret-edc-bpdm-dataplane
   token:
     signer:
-      privatekey_alias: "int/bpdm/edc/token-private-key"
+      privatekey_alias: "int/edc-bpdm/token-private-key"
     verifier:
-      publickey_alias: "int/bpdm/edc/token-public-key"
+      publickey_alias: "int/edc-bpdm/token-public-key"
 
 postgresql:
   jdbcUrl: "jdbc:postgresql://{{ .Release.Name }}-postgresql:5432/edc"
@@ -90,11 +90,12 @@ postgresql:
   auth:
     database: "edc"
     username: "user"
-    password: <path:bpdm/data/int/bpdm/edc/postgres#password>
+    password: <path:bpdm/data/int/edc-bpdm/postgres#password>
 
 vault:
   hashicorp:
     url: "https://vault.core.catena-x.net"
-    token: <path:bpdm/data/int/bpdm/edc/vault#token>
+    token: <path:bpdm/data/int/edc-bpdm/vault#token>
     paths:
       secret: /v1/bpdm
+      folder: "edc-bpdm/edrs"
