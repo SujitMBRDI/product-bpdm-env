@@ -78,9 +78,9 @@ dataplane:
         secretName: tls-secret-edc-bpdm-dataplane
   token:
     signer:
-      privatekey_alias: "int/edc-bpdm/token-private-key"
+      privatekey_alias: "token-private-key"
     verifier:
-      publickey_alias: "int/edc-bpdm/token-public-key"
+      publickey_alias: "token-public-key"
 
 postgresql:
   jdbcUrl: "jdbc:postgresql://{{ .Release.Name }}-postgresql:5432/edc"
@@ -98,4 +98,4 @@ vault:
     token: <path:bpdm/data/int/edc-bpdm/vault#token>
     paths:
       secret: /v1/bpdm
-      folder: "edc-bpdm/edrs"
+      folder: "int/edc-bpdm"
