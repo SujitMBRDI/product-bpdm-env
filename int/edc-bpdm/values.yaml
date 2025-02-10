@@ -17,7 +17,7 @@ iatp:
       token_url: "https://5c9a4f56-0609-49a5-ab86-dd8f93dfd3fa-mak75wiz.authentication.eu10.hana.ondemand.com/oauth/token"
       client:
         id: "sb-311d1dba-dccb-465d-b4e0-3616031d4a1f!b514595|ica-production-dim-prod-eu10-004-prod-dis-cloud-approuter!b174292"
-        secret_alias: "int/edc-bpdm/wallet-client-secret"
+        secret_alias: "wallet-client-secret"
 
 controlplane:
   env:
