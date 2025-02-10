@@ -226,11 +226,9 @@ With all client credentials and keys in place we create the following secrets:
 - stable/edc-bpdm/token-private-key#content (private RSA key)
 - stable/edc-bpdm/token-public-key#content (public RSA key)
 - stable/edc-bpdm/client-secret#content (from wallet client)
-- stable/edc-bpdm/asset-secrets/BPNL/pool-member-read#content (from Pool Consumer Client)
-- stable/edc-bpdm/asset-secrets/BPNL/input-full-access#content(from Sharing Input Manager Client)
-- stable/edc-bpdm/asset-secrets/BPNL/output-read-access#content(from Sharing Output Consumer Client)
-
-Note that `BPNL` needs to be replaced with the actual BPNL of the test sharing member company.
+- stable/edc-bpdm/asset-secrets/test-sharing-member/pool-member-read#content (from Pool Consumer Client)
+- stable/edc-bpdm/asset-secrets/test-sharing-member/input-full-access#content(from Sharing Input Manager Client)
+- stable/edc-bpdm/asset-secrets/test-sharing-member/output-read-access#content(from Sharing Output Consumer Client)
 
 Also note that all secrets having a `content` secret value are secrets that the EDC accesses during runtime from the vault directly.
 They are not used for the argo-cd plugin.
@@ -258,14 +256,13 @@ We just need to make sure to set the necessary collection variables:
 5. TOKEN_URL: http://centralidp.stable.catena-x.net/auth/realms/CX-Central/protocol/openid-connect/token
 6. CONSUMER_BPNL: The BPNL of the test sharing member
 7. CLIENT_ID_POOL_CX_MEMBER_READ: from Pool Consumer Client
-8. CLIENT_SECRET_PATH_POOL_CX_MEMBER_READ_CLIENT: stable/edc-bpdm/asset-secrets/BPNL/pool-member-read
+8. CLIENT_SECRET_PATH_POOL_CX_MEMBER_READ_CLIENT: stable/edc-bpdm/asset-secrets/test-sharing-member/pool-member-read
 9. CLIENT_ID_GATE_SHARING_MEMBER_FULL_INPUT: from Sharing Input Manager Client
-10. CLIENT_SECRET_PATH_GATE_SHARING_MEMBER_FULL_INPUT: stable/edc-bpdm/asset-secrets/BPNL/input-full-access
+10. CLIENT_SECRET_PATH_GATE_SHARING_MEMBER_FULL_INPUT: stable/edc-bpdm/asset-secrets/test-sharing-member/input-full-access
 11. CLIENT_ID_GATE_SHARING_MEMBER_READ_OUTPUT: from Sharing Output Consumer Client
-12. CLIENT_SECRET_PATH_GATE_SHARING_MEMBER_READ_OUTPUT: stable/edc-bpdm/asset-secrets/BPNL/output-read-access
+12. CLIENT_SECRET_PATH_GATE_SHARING_MEMBER_READ_OUTPUT: stable/edc-bpdm/asset-secrets/test-sharing-member/output-read-access
 
 Note that the variables for the client secret path need to contain the path in the vault where the secret can be found.
-As before, `BPNL` should be replaced with the actual BPNL of the test sharing member.
 
 ## Set up the Sharing Member EDC
 
