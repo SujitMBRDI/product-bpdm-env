@@ -98,3 +98,4 @@ vault:
     token: <path:bpdm/data/stable/edc-test-sharing-member/vault#token>
     paths:
       secret: /v1/bpdm
+      folder: "edc-test-sharing-member/edrs"

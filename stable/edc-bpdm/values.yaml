@@ -98,3 +98,4 @@ vault:
     token: <path:bpdm/data/stable/edc-bpdm/vault#token>
     paths:
       secret: /v1/bpdm
+      folder: "edc-bpdm/edrs"
