@@ -17,7 +17,7 @@ bpdm-gate:
     hosts:
       - host: business-partners.stable.catena-x.net
         paths:
-          - path: "/companies/test-sharing-member"
+          - path: "/companies/sap"
             pathType: Prefix
     tls:
       - secretName: tls-secret-bpdm-sap-gate
@@ -25,17 +25,17 @@ bpdm-gate:
           - business-partners.stable.catena-x.net
   livenessProbe:
     httpGet:
-      path: "/companies/test-sharing-member/actuator/health/liveness"
+      path: "/companies/sap/actuator/health/liveness"
   readinessProbe:
     httpGet:
-      path: "/companies/test-sharing-member/actuator/health/readiness"
+      path: "/companies/sap/actuator/health/readiness"
   startupProbe:
     httpGet:
-      path: "/companies/test-sharing-member/actuator/health/readiness"
+      path: "/companies/sap/actuator/health/readiness"
   applicationConfig:
     server:
       servlet:
-        context-path: "/companies/test-sharing-member"
+        context-path: "/companies/sap"
     bpdm:
       bpn:
         owner-bpn-l: "BPNL0000000009Z7"
