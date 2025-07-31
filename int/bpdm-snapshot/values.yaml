@@ -34,6 +34,8 @@ bpdm-gate:
   startupProbe:
     httpGet:
       path: "/companies/test-company/actuator/health/readiness"
+  configMountSecurity:
+    recursiveReadOnly: Disabled
   applicationConfig:
     server:
       servlet:
@@ -96,6 +98,8 @@ bpdm-pool:
   startupProbe:
     httpGet:
       path: "/pool/actuator/health/readiness"
+  configMountSecurity:
+    recursiveReadOnly: Disabled
   applicationConfig:
     server:
       servlet:
@@ -149,6 +153,8 @@ bpdm-orchestrator:
   startupProbe:
     httpGet:
       path: "orchestrator/actuator/health/readiness"
+  configMountSecurity:
+    recursiveReadOnly: Disabled
   applicationConfig:
     server:
       servlet:
@@ -168,6 +174,8 @@ bpdm-cleaning-service-dummy:
     tag: "latest-SNAPSHOT"
     pullPolicy: Always
   startupDelaySeconds: 1
+  configMountSecurity:
+    recursiveReadOnly: Disabled
   applicationConfig:
     bpdm:
       client:
