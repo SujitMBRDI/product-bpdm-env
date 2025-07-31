@@ -32,6 +32,8 @@ bpdm-gate:
   startupProbe:
     httpGet:
       path: "/companies/test-sharing-member/actuator/health/readiness"
+  configMountSecurity:
+    recursiveReadOnly: Disabled
   applicationConfig:
     server:
       servlet:
