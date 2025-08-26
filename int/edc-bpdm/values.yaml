@@ -2,8 +2,14 @@ install:
   postgresql: true
   vault: false
 
-participant:
-  id: "BPNL00000003CRHK"
+edc:
+  participant:
+    id: "did:web:portal-backend.int.catena-x.net:api:administration:staticdata:did:BPNL00000003CRHK"
+
+tractusx:
+  edc:
+    participant:
+      bpn: "BPNL00000003CRHK"
 
 iatp:
   # Decentralized Identifier
