@@ -1,0 +1,79 @@
+postgres:
+  fullnameOverride: "bpdm-test-sharing-member-2-postgres"
+  auth:
+    postgresPassword: <path:bpdm/data/int/bpdm-test-sharing-member-2/postgresql#postgres-password>
+    password: <path:bpdm/data/int/bpdm-test-sharing-member-2/postgresql#password>
+
+centralidp:
+  enabled: false
+
+bpdm-gate:
+  enabled: true
+  startupDelaySeconds: 1
+  ingress:
+    annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+    enabled: true
+    hosts:
+      - host: business-partners.int.catena-x.net
+        paths:
+          - path: "/companies/test-sharing-member-2"
+            pathType: Prefix
+    tls:
+      - secretName: tls-secret-bpdm-test-sharing-member-2-gate
+        hosts:
+          - business-partners.int.catena-x.net
+  livenessProbe:
+    httpGet:
+      path: "/companies/test-sharing-member-2/actuator/health/liveness"
+  readinessProbe:
+    httpGet:
+      path: "/companies/test-sharing-member-2/actuator/health/readiness"
+  startupProbe:
+    httpGet:
+      path: "/companies/test-sharing-member-2/actuator/health/readiness"
+  configMountSecurity:
+    recursiveReadOnly: Disabled
+  applicationConfig:
+    server:
+      servlet:
+        context-path: "/companies/test-sharing-member-2"
+    bpdm:
+      bpn:
+        owner-bpn-l: "BPNL00000000726A"
+      datasource:
+        host: "bpdm-test-sharing-member-2-postgres"
+      client:
+        pool:
+          base-url: "http://bpdm-pool/pool"
+          registration:
+            client-id: <path:bpdm/data/int/bpdm-test-sharing-member-2/gate/pool-client#client-id>
+        orchestrator:
+          base-url: "http://bpdm-orchestrator/orchestrator"
+          registration:
+            client-id: <path:bpdm/data/int/bpdm-test-sharing-member-2/gate/orchestrator-client#client-id>
+      security:
+        auth-server-url: https://centralidp.int.catena-x.net/auth
+        permissions:
+          uploadInputPartner: write_input_partner
+  applicationSecrets:
+    spring:
+      datasource:
+        password: <path:bpdm/data/int/bpdm-test-sharing-member-2/postgresql#password>
+    bpdm:
+      client:
+        pool:
+          registration:
+            client-secret: <path:bpdm/data/int/bpdm-test-sharing-member-2/gate/pool-client#client-secret>
+        orchestrator:
+          registration:
+            client-secret: <path:bpdm/data/int/bpdm-test-sharing-member-2/gate/orchestrator-client#client-secret>
+
+bpdm-pool:
+  enabled: false
+
+bpdm-orchestrator:
+  enabled: false
+
+bpdm-cleaning-service-dummy:
+  enabled: false
