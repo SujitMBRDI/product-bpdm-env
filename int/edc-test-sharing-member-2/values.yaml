@@ -90,7 +90,7 @@ postgresql:
   auth:
     database: "edc"
     username: "user"
-    password: <path:bpdm/data/int/edc-test-sharing-2-member/postgres#password>
+    password: <path:bpdm/data/int/edc-test-sharing-member-2/postgres#password>
 
 vault:
   hashicorp:
