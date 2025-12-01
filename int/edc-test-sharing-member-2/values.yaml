@@ -14,7 +14,7 @@ iatp:
     dim:
       url: "https://dis-integration-service-prod.eu10.dim.cloud.sap/api/v2.0.0/iatp/catena-x-portal"
     oauth:
-      token_url: "https://7d8afa41-2fa1-471c-bce6-4433de34d93a-td7lnqz3.authentication.eu10.hana.ondemand.com/oauth/token"
+      token_url: "https://b74ef27e-2777-4840-bb30-d82871ff1ba5-m6iluaqk.authentication.eu10.hana.ondemand.com/oauth/token"
       client:
         id: "sb-e6c8b75b-675f-4900-b482-d14a08657118!b518219|ica-production-dim-prod-eu10-004-prod-dis-cloud-approuter!b174292"
         secret_alias: "wallet-client-secret"
